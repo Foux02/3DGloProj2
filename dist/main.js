@@ -1,1 +1,0 @@
-(()=>{"use strict";console.log("one.js"),console.log("Привет Земля))"),console.log("two.js"),console.log("Привет Марс))")})();
