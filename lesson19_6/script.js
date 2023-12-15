@@ -1,5 +1,7 @@
 'use strict';
 
+const textInput = document.createElement('p');
+
 const week = [
   'Воскресенье',
   'Понедельник',
@@ -10,15 +12,13 @@ const week = [
   'Суббота',
 ];
 
+const dateNewYear = new Date(2024, 0, 1);
+
 let nowDate;
 let dayText;
 let timeOfDay;
 
-const textInput = document.createElement('p');
-
-const dateNewYear = new Date(2024, 0, 1);
-
-function updateSite() {
+const updateSite = () => {
   nowDate = new Date();
 
   let leftNewYear = Math.floor((dateNewYear - nowDate) / 1000 / 60 / 60 / 24);
@@ -55,6 +55,6 @@ function updateSite() {
   }).format(nowDate)}<br>До нового года осталось ${leftNewYear} ${dayText}`;
 
   document.body.append(textInput);
-}
+};
 
-setInterval(updateSite, 1000);
+const timerId = setInterval(updateSite, 1000);
