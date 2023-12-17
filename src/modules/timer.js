@@ -49,6 +49,8 @@ const timer = (deadline) => {
     timerSeconds.textContent = getTime.nullSeconds;
   };
 
+  setInterval(updateClock, 1, deadline);
+
   const timerId = setInterval(updateClock, 1000, deadline);
 };
 

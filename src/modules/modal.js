@@ -4,9 +4,9 @@ const modal = () => {
   const buttons = document.querySelectorAll('.popup-btn');
   const closeBtn = document.querySelector('.popup-close');
 
-  const minWigth = 768;
+  const minWigth = 750;
 
-  let count = 10;
+  let count = 0;
   let wigth = document.documentElement.clientWidth;
 
   let idInterval;
@@ -15,11 +15,11 @@ const modal = () => {
     count++;
     idInterval = requestAnimationFrame(anime);
 
-    if (count < Math.round(wigth / 23)) {
-      modalWindow.style.left = count * 10 + 'px';
+    if (count < Math.round(wigth / 50)) {
+      modalWindow.style.left = count * 20 + 'px';
     } else {
       cancelAnimationFrame(idInterval);
-      count = 10;
+      count = 0;
     }
   };
 
