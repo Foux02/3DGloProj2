@@ -26,12 +26,8 @@ const menu = () => {
       const idALink = aLink.getAttribute('href');
 
       document.querySelector(idALink).scrollIntoView({ behavior: 'smooth' });
-    } else if (
-      e.target.matches('body') &&
-      e.target.matches('menu.active-menu')
-    ) {
-      console.log(e.target.closest('menu.active-menu'));
-      handleMenu();
+    } else if (!e.target.closest('.active-menu')) {
+      menu.classList.remove('active-menu');
     }
   });
 };
