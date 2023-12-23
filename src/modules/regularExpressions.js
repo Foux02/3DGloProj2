@@ -1,5 +1,6 @@
 const regularExpressions = () => {
   const formNames = document.querySelectorAll('.form-name');
+  const formNamesCss = document.getElementsByClassName('form-name');
   const formPhones = document.querySelectorAll('.form-phone');
   const formEmailes = document.querySelectorAll('.form-email');
   const mess = document.querySelector('.mess');
@@ -7,52 +8,66 @@ const regularExpressions = () => {
   const calcItemAll = document.querySelectorAll('input.calc-item');
 
   calcItemAll.forEach((item) => {
-    item.addEventListener('input', (e) => {
+    item.addEventListener('blur', (e) => {
       if (!/[^\d]/g.test(item.value)) {
         e.target.value = item.value;
         console.log('число');
       } else {
-        alert('Нужно ввести целое число');
-        e.target.value = e.target.value.replace(/[^\d]/, '');
+        e.target.value = e.target.value.replace(/[^\d]/g, '');
       }
     });
   });
 
-  formNames.forEach((item) => {
-    item.addEventListener('input', (e) => {
-      if (/^[а-яА-Я-\s]{0,}$/gi.test(item.value)) {
-        e.target.value = item.value;
-      } else {
-        e.target.value = e.target.value.replace(/[\w\D]$/, '');
-      }
+  formNames.forEach((item, index) => {
+    item.addEventListener('blur', (e) => {
+      formNamesCss[index].style.textTransform = 'capitalize';
+      e.target.value = e.target.value.replace(
+        /[a-zA-Z0-9\&\@\/\#\,\+\$\~\%\.\'\"\:\;\*\?\<\>\{\}\!\_\(\)]/g,
+        ''
+      );
+      e.target.value = e.target.value.replace(/[\-]{2,}/g, '-');
+      e.target.value = e.target.value.replace(/[\s]{2,}/g, ' ');
+      e.target.value = e.target.value.replace(/^[\-\s]*/g, '');
+      e.target.value = e.target.value.replace(/[\-\s]*$/g, '');
+
+      console.log('else' + index);
     });
   });
 
-  mess.addEventListener('input', (e) => {
-    if (/^[а-яА-Я-\s]{0,}$/gi.test(mess.value)) {
-      e.target.value = mess.value;
-    } else {
-      e.target.value = e.target.value.replace(/[\w\D]$/, '');
-    }
+  mess.addEventListener('blur', (e) => {
+    mess.style.textTransform = 'capitalize';
+    e.target.value = e.target.value.replace(
+      /[a-zA-Z0-9\&\/\#\,\+\$\~\%\.\'\"\:\;\*\?\<\>\{\}\!\_\(\)]/g,
+      ''
+    );
+    e.target.value = e.target.value.replace(/[\-]{2,}/g, '-');
+    e.target.value = e.target.value.replace(/[\s]{2,}/g, ' ');
+    e.target.value = e.target.value.replace(/^[\-\s]*/g, '');
+    e.target.value = e.target.value.replace(/[\-\s]*$/g, '');
+    mess.style.textTransform = 'capitalize';
   });
 
   formEmailes.forEach((item) => {
-    item.addEventListener('input', (e) => {
-      if (/^[\w\.\-\_\!\~\*\'\@]{0,}$/g.test(item.value)) {
-        e.target.value = item.value;
-      } else {
-        e.target.value = e.target.value.replace(/[\Wа-яА-Я\s]{1}$/, '');
-      }
+    item.addEventListener('blur', (e) => {
+      e.target.value = e.target.value.replace(
+        /[\[\]\&\/\#\,\+\$\%\"\:\?\<\>\{\}а-яА-Я\s]/g,
+        ''
+      );
+      e.target.value = e.target.value.replace(/[\-]{2,}/g, '-');
+      e.target.value = e.target.value.replace(/^[\-]*/g, '');
+      e.target.value = e.target.value.replace(/[\-]*$/g, '');
     });
   });
 
   formPhones.forEach((item) => {
-    item.addEventListener('input', (e) => {
-      if (/^[\d\(\)\-]{0,}$/g.test(item.value)) {
-        e.target.value = item.value;
-      } else {
-        e.target.value = e.target.value.replace(/[\Dа-яА-Я\s]{1}$/, '');
-      }
+    item.addEventListener('blur', (e) => {
+      e.target.value = e.target.value.replace(
+        /[\&\/\#\,\+\$\~\%\.\'\"\:\*\?\<\>\{\}\!\_a-zA-Zа-яА-Я\s]/g,
+        ''
+      );
+      e.target.value = e.target.value.replace(/[\-]{2,}/g, '-');
+      e.target.value = e.target.value.replace(/^[\-]*/g, '');
+      e.target.value = e.target.value.replace(/[\-]*$/g, '');
     });
   });
 };
