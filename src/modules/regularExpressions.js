@@ -11,7 +11,6 @@ const regularExpressions = () => {
     item.addEventListener('blur', (e) => {
       if (!/[^\d]/g.test(item.value)) {
         e.target.value = item.value;
-        console.log('число');
       } else {
         e.target.value = e.target.value.replace(/[^\d]/g, '');
       }
@@ -29,8 +28,6 @@ const regularExpressions = () => {
       e.target.value = e.target.value.replace(/[\s]{2,}/g, ' ');
       e.target.value = e.target.value.replace(/^[\-\s]*/g, '');
       e.target.value = e.target.value.replace(/[\-\s]*$/g, '');
-
-      console.log('else' + index);
     });
   });
 
