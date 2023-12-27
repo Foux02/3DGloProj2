@@ -12,10 +12,19 @@ const calc = (price = 100) => {
   let totalValue;
 
   const totalAnime = () => {
-    totalCount += 10;
+    if (totalValue <= 2500) {
+      totalCount += 9;
+    } else if (totalValue <= 11000) {
+      totalCount += 29;
+    } else if (totalValue <= 33000) {
+      totalCount += 92;
+    } else {
+      totalCount += 192;
+    }
+
     let idInterval = requestAnimationFrame(totalAnime);
 
-    if (totalValue === totalCount) {
+    if (totalValue <= totalCount) {
       total.textContent = totalValue;
       cancelAnimationFrame(idInterval);
       totalCount = 0;
