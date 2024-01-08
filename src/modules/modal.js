@@ -1,3 +1,5 @@
+import { animate } from './helpers';
+
 const modal = () => {
   const modal = document.querySelector('.popup');
   const modalWindow = document.querySelector('.popup-content');
@@ -5,22 +7,7 @@ const modal = () => {
 
   const minWigth = 750;
 
-  let count = 0;
   let wigth = document.documentElement.clientWidth;
-
-  let idInterval;
-
-  const anime = () => {
-    count++;
-    idInterval = requestAnimationFrame(anime);
-
-    if (count < Math.round(wigth / 50)) {
-      modalWindow.style.left = count * 20 + 'px';
-    } else {
-      cancelAnimationFrame(idInterval);
-      count = 0;
-    }
-  };
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -28,7 +15,16 @@ const modal = () => {
       modal.style.display = 'block';
 
       if (wigth > minWigth) {
-        anime();
+        animate({
+          duration: 800,
+          timing(timeFraction) {
+            return timeFraction;
+          },
+          draw(progress) {
+            modalWindow.style.left = progress * 40 + '%';
+            modal.style.opacity = progress;
+          },
+        });
       } else {
       }
     });

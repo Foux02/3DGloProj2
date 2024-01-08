@@ -1,3 +1,5 @@
+import { animate } from './helpers';
+
 const calc = (price = 100) => {
   const calcBlock = document.querySelector('.calc-block');
 
@@ -8,30 +10,7 @@ const calc = (price = 100) => {
 
   const total = document.getElementById('total');
 
-  let totalCount = 0;
   let totalValue;
-
-  const totalAnime = () => {
-    if (totalValue <= 2500) {
-      totalCount += 9;
-    } else if (totalValue <= 11000) {
-      totalCount += 29;
-    } else if (totalValue <= 33000) {
-      totalCount += 92;
-    } else {
-      totalCount += 192;
-    }
-
-    let idInterval = requestAnimationFrame(totalAnime);
-
-    if (totalValue <= totalCount) {
-      total.textContent = totalValue;
-      cancelAnimationFrame(idInterval);
-      totalCount = 0;
-    } else {
-      total.textContent = 0 + totalCount;
-    }
-  };
 
   const countCalc = () => {
     const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
@@ -58,7 +37,15 @@ const calc = (price = 100) => {
     }
 
     if (totalValue > 0) {
-      totalAnime();
+      animate({
+        duration: 3000,
+        timing(timeFraction) {
+          return timeFraction;
+        },
+        draw(progress) {
+          total.textContent = Math.abs(Math.round(progress * totalValue));
+        },
+      });
     } else {
       total.textContent = totalValue;
     }
