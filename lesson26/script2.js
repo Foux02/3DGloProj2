@@ -23,7 +23,7 @@ try {
   getData('db.json')
     .then((data) => {
       console.log('Данные получены: ', data);
-      console.log(`Данные отправки (вариант 2): ${data}`);
+      console.log(`Данные получены (вариант 2): ${data}`);
       sendData(
         'https://jsonplaceholder.typicode.com/posts',
         JSON.stringify(data)
