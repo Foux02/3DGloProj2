@@ -1,21 +1,25 @@
 'use strict';
 
 const sendData = (url, data) => {
-  return fetch(url, {
-    method: 'POST',
-    body: data,
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  }).then((response) => response.json());
-  /*
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error('Неудачный запрос');
-    }
-    response.json();
-  });
+  return (
+    fetch(url, {
+      method: 'POST',
+      body: data,
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      /*
+  .then((response) => response.json());
   */
+
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Неудачный запрос');
+        }
+        response.json();
+      })
+  );
 };
 
 const getData = (url) => {
