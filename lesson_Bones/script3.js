@@ -78,7 +78,7 @@ const outputCard = () => {
     divCard.innerHTML = `${json2html.render(data, template)}`;
     cardСolumns.append(divCard);
   });
-  setTimeout(() => (cardСolumns.style.display = 'inline-block'), 400);
+  setTimeout(() => (cardСolumns.style.display = 'inline-block'), 500);
 };
 
 const filterChange = () => {
