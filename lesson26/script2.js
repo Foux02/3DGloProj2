@@ -7,15 +7,12 @@ const sendData = (url, data) => {
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
     },
-  }).then((response) => response.json());
-  /*
-  .then((response) => {
+  }).then((response) => {
     if (!response.ok) {
       throw new Error('Неудачный запрос');
     }
-    response.json();
+    return response.json();
   });
-  */
 };
 
 const getData = (url) => {
@@ -26,7 +23,6 @@ try {
   getData('db.json')
     .then((data) => {
       console.log('Данные получены: ', data);
-      console.log(`Данные получены (вариант 2): ${data}`);
       sendData(
         'https://jsonplaceholder.typicode.com/posts',
         JSON.stringify(data)
