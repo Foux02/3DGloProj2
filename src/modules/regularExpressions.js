@@ -21,7 +21,8 @@ const regularExpressions = () => {
     item.addEventListener('blur', (e) => {
       formNamesCss[index].style.textTransform = 'capitalize';
       e.target.value = e.target.value.replace(
-        /[a-zA-Z0-9\&\@\/\#\,\+\$\~\%\.\'\"\:\;\*\?\<\>\{\}\!\_\(\)]/g,
+        // /[a-zA-Z0-9\&\@\/\#\,\+\$\~\%\.\'\"\:\;\*\?\<\>\{\}\!\_\(\)]/
+        /[a-zA-Z0-9\&\/\#\,\@\$\~\%\.\'\"\:\;\*\?\<\>\{\}\!\_\(\)]/g,
         ''
       );
       e.target.value = e.target.value.replace(/[\-]{2,}/g, '-');
@@ -34,7 +35,8 @@ const regularExpressions = () => {
   mess.addEventListener('blur', (e) => {
     mess.style.textTransform = 'capitalize';
     e.target.value = e.target.value.replace(
-      /[a-zA-Z0-9\&\/\#\,\+\$\~\%\.\'\"\:\;\*\?\<\>\{\}\!\_\(\)]/g,
+      // /[a-zA-Z0-9\&\/\#\,\+\$\~\%\.\'\"\:\;\*\?\<\>\{\}\!\_\(\)]/
+      /[a-zA-Z\&\/\#\$\~\%\'\*\<\>\{\}\_]/g,
       ''
     );
     e.target.value = e.target.value.replace(/[\-]{2,}/g, '-');
@@ -59,7 +61,8 @@ const regularExpressions = () => {
   formPhones.forEach((item) => {
     item.addEventListener('blur', (e) => {
       e.target.value = e.target.value.replace(
-        /[\&\/\#\,\+\$\~\%\.\'\"\:\*\?\<\>\{\}\!\_a-zA-Zа-яА-Я\s]/g,
+        // /[\&\/\#\,\+\$\~\%\.\'\"\:\*\?\<\>\{\}\!\_a-zA-Zа-яА-Я\s]/
+        /[\&\/\#\,\$\~\%\.\'\"\:\*\?\<\>\{\}\!\_a-zA-Zа-яА-Я\s]/g,
         ''
       );
       e.target.value = e.target.value.replace(/[\-]{2,}/g, '-');
