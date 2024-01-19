@@ -17,25 +17,16 @@ const sendForm = ({ fornId }) => {
 
     list.forEach((key) => {
       if (key.name === 'user_name') {
-        console.log(key.value + ' user_name ');
-
         validateName = /^[а-яА-Я\s]+$/g.test(key.value);
-        console.log(validateName);
       } else if (key.name === 'user_phone') {
-        console.log(key.value + ' user_phone');
-
         validatePhone = /^\+\d{1}\(\d{3}\)(\d{3})[-](\d{2})[-]\d{2}$/.test(
           key.value
         );
-        console.log(validatePhone);
       } else if (key.name === 'user_message') {
-        console.log(key.value + ' user_message');
         validateMessage = /^[а-яА-Я0-9\s\.\,\?\!\:\;\"\-\(\)]+$/.test(
           key.value
         );
-        console.log(validateMessage);
       } else {
-        console.log('mail');
       }
     });
 
@@ -45,10 +36,8 @@ const sendForm = ({ fornId }) => {
       validateMessage === false
     ) {
       success = false;
-      console.log('success = false');
     }
 
-    console.log(success);
     return success;
   };
 
@@ -75,8 +64,6 @@ const sendForm = ({ fornId }) => {
     });
 
     if (validate(formElements)) {
-      console.log('validate(formElements)');
-      console.log(validate(formElements));
       sendData(formBody)
         .then((data) => {
           statusBlock.textContent = successText;
@@ -89,7 +76,6 @@ const sendForm = ({ fornId }) => {
         .catch((error) => {
           statusBlock.textContent = errorText;
           statusBlock.style.color = '#FF5555';
-          console.log('54345');
         });
     } else {
       statusBlock.textContent = validText;
