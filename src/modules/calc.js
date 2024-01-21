@@ -11,6 +11,7 @@ const calc = (price = 100) => {
   const total = document.getElementById('total');
 
   let totalValue;
+  let totalSpeedAnime;
 
   const countCalc = () => {
     const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
@@ -36,9 +37,19 @@ const calc = (price = 100) => {
       totalValue = 0;
     }
 
+    if (totalValue <= 2500) {
+      totalSpeedAnime = 3000;
+    } else if (totalValue <= 11000) {
+      totalSpeedAnime = 2300;
+    } else if (totalValue <= 33000) {
+      totalSpeedAnime = 2000;
+    } else {
+      totalSpeedAnime = 1500;
+    }
+
     if (totalValue > 0) {
       animate({
-        duration: 3000,
+        duration: totalSpeedAnime,
         timing(timeFraction) {
           return timeFraction;
         },

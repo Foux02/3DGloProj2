@@ -1,12 +1,17 @@
 const sendForm = ({ fornId }) => {
   const form = document.getElementById(fornId);
   const statusBlock = document.createElement('div');
+  const nameUserEmail = document.getElementsByName('user_email');
 
   const loadText = 'Загрузка...';
   const errorText = 'Ошибка...';
   const successText = 'Спасибо! Наш менеджер с вами свяжется.';
   const validText =
     'Данные не валидны! Приведите данные в соответствие с примерами. ФИО: Сергей Филатов. Номер телефона: +7(900)500-60-60';
+
+  nameUserEmail.forEach((key) => {
+    key.setAttribute('required', true);
+  });
 
   const validate = (list) => {
     let validateName;
@@ -63,11 +68,17 @@ const sendForm = ({ fornId }) => {
       formBody[key] = val;
     });
 
+    const cleanTextContent = () => {
+      statusBlock.textContent = '';
+    };
+
     if (validate(formElements)) {
       sendData(formBody)
         .then((data) => {
           statusBlock.textContent = successText;
           statusBlock.style.color = '#00CC33';
+
+          setTimeout(cleanTextContent, 4000);
 
           formElements.forEach((input) => {
             input.value = '';
@@ -82,6 +93,8 @@ const sendForm = ({ fornId }) => {
       statusBlock.style.color = '#FFA07A';
     }
   };
+
+  //+7(900)600-60-60
 
   try {
     if (!form) {
