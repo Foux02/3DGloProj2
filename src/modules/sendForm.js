@@ -94,8 +94,6 @@ const sendForm = ({ fornId }) => {
     }
   };
 
-  //+7(900)600-60-60
-
   try {
     if (!form) {
       throw new Error('Верните форму, пожалуйста))');
